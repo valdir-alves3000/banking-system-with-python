@@ -9,7 +9,8 @@ def create_user(users):
   else:
     users.append({"cpf": cpf,"name": name})
     print("✅ Usuário criado com sucesso!")
-
+  
+  return users
 
 def find_user_by_cpf(cpf,users):
   user_exists = [user for user in users if user["cpf"] == cpf]    
