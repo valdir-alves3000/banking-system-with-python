@@ -5,7 +5,7 @@ from operation_failure import operation_failure
 def bank_account_statement(accounts):  
   try:
     number_account = float(input("Informe a conta para Extrato: "))        
-    bank_agency = float(input("Informe a agêcia para Extrato: "))        
+    bank_agency = input("Informe a agêcia para Extrato: ")  
   except ValueError:
     operation_failure("Digite apenas números.")
   
@@ -17,4 +17,6 @@ def bank_account_statement(accounts):
     print("Não foi Realizada Movimentação.\n" if not account["extract"] else account["extract"])
     print(f"✅ Saldo: R$ {account.get('balance', 0):.2f}")
     print("===================================")
+  else:
+    operation_failure("Verifique agência/conta/password.")
   

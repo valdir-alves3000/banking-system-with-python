@@ -30,7 +30,7 @@ def check_user_has_account(user,accounts):
    return user_has_account[0] if user_has_account else None
 
 def create_account(*,users, bank_agency,accounts):
-  cpf = input("Informe o CPF do usuário: ")
+  cpf = int(input("Informe o CPF do usuário: "))
   user = find_user_by_cpf(cpf, users)
   password = input("Digite sua senha: ")
 
@@ -63,3 +63,13 @@ def create_account(*,users, bank_agency,accounts):
         print(account)
     else:
       operation_failure("Usuário não encontrado.")
+
+def transaction_information(value, account,transaction):
+  print(f"✅ {transaction.title()} realizado com sucesso\n")
+  linha = f"""\
+      Agência:\t{account['bank_agency']}
+      C/C:\t\t{account['number_account']}
+      Titular:\t{account['user']['name']}
+      Valor:\t{f"R$ {value}"}
+    """
+  print(textwrap.dedent(linha))

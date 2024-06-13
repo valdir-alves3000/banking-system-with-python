@@ -1,11 +1,12 @@
 import textwrap
 
+
 def menu():
   menu = """\n
   [d]\tDepositar
   [s]\tSacar
   [user]\tCriar Usuário
-  [conta]\tAcessar a Conta
+  [conta]\tAbrir Conta
   [e]\tExtrato
   [q]\tSair
   => """

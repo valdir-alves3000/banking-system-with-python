@@ -21,17 +21,8 @@ def main():
       create_account(bank_agency=BANK_AGENCY, users=users,accounts=accounts)
 
     if option == "d":
-      try:
-        value = float(input("Informe o valor do depósito: "))   
-        number_account = float(input("Informe a conta de depósito: "))
-      except ValueError:
-        operation_failure("Digite apenas números.")
-        
-      if len(accounts) > 0:     
-        accounts =  deposit(value,BANK_AGENCY,number_account,accounts)
-      else:
-        operation_failure("Não há conta no Sistema.")        
-         
+      accounts =  deposit(BANK_AGENCY,accounts)
+
     elif option == "s":
       withdraw_money(accounts)
       
