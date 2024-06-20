@@ -47,14 +47,17 @@ def withdraw_money(clients):
   number_account = get_input("number_account")
   if not number_account.isdigit():
     return operation_failure("Digite somente números")
-
+  
+  password = get_input("password")
   account = get_client_account(client,number_account)
-  if not account:
-    return
+
+  if not account or account.password != password:
+    return operation_failure("Verifique sua Conta/Senha!")    
 
   value = get_input("value")
   if not value.isdigit():
    return operation_failure("Digite somente números")
+  value = int(value)
   
   transaction = WithdrawMoney(value)
 
@@ -75,9 +78,11 @@ def show_extract(clients):
   if not number_account.isdigit():
     return operation_failure("Digite somente números")
   
+  password = get_input("password")
   account = get_client_account(client,number_account)
-  if not account:
-    return
+
+  if not account or account.password != password:
+    return operation_failure("Verifique sua Conta/Senha!")    
   
   print("\n============= EXTRATO =============")
   transactions = account.bank_account_statement.transactions

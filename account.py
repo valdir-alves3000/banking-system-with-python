@@ -3,17 +3,22 @@ from operation_failure import operation_failure
 
 
 class Account:
-  def __init__(self, number_account,client):
+  def __init__(self, number_account,client,password):
     self._balance = 0
     self._number_account = number_account
     self._bank_agency = '0001'
     self._client = client
     self._bank_account_statement = BankAccountStatement()
+    self._password = password
 
   @classmethod
-  def add_account(cls,client,number_account):
-    return cls(number_account,client)
+  def add_account(cls,client,number_account,password):
+    return cls(number_account,client,password)
   
+  @property
+  def password(self):
+    return self._password
+
   @property
   def balance(self):
     return self._balance

@@ -16,9 +16,6 @@ def create_clients(clients):
   name = get_input("name") 
   date_birth = get_input("date_birth")
   date_birth = format_date(date_birth)
-
-  # if not date_birth.isdigit():
-  #  return operation_failure("Digite somente números")
   
   address = get_input("address")
 

@@ -3,8 +3,8 @@ from withdraw_money import WithdrawMoney
 
 
 class CurrentAccount(Account):
-  def __init__(self, number_account,client,limit=500,withdrawal_limit=3):
-    super().__init__(number_account,client)
+  def __init__(self, number_account,client,password,limit=500,withdrawal_limit=3):
+    super().__init__(number_account,client,password)
     self.limit = limit
     self.withdrawal_limit = withdrawal_limit
     

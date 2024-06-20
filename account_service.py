@@ -19,7 +19,8 @@ def create_account(clients,accounts):
     return
   
   number_account = str(generete_number_account())
-  account = CurrentAccount.add_account(client,number_account)
+  password = get_input("password")
+  account = CurrentAccount.add_account(client,number_account,password)
 
   accounts.append(account)
   client.accounts.append(account)

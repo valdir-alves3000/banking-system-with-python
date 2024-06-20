@@ -31,6 +31,9 @@ def get_input(data):
 
     if data == "value":
       message = "Informe o Valor: "   
+
+    if data == "password":
+      message = "Digite sua Senha: "   
     
     return input(message)
   
