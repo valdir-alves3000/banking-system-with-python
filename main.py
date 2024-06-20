@@ -1,34 +1,33 @@
-from accounts import create_account
-from bank_account_statement import bank_account_statement
-from deposit import deposit
+from account_service import create_account, list_accounts
+from client_service import create_clients
 from menu import menu
-from operation_failure import operation_failure
-from user import create_user
-from withdraw_money import withdraw_money
+from transaction_service import deposit, show_extract, withdraw_money
 
 
 def main():
-  BANK_AGENCY = '0001'
-  users = []
+  clients = []
   accounts = []
-
   while True:
     option = menu()
-
-    if option == "user":
-      users = create_user(users)   
-    if option == "conta":
-      create_account(bank_agency=BANK_AGENCY, users=users,accounts=accounts)
-
+     
     if option == "d":
-      accounts =  deposit(BANK_AGENCY,accounts)
+      deposit(clients)
 
+    if option == "nu":
+      create_clients(clients)
+
+    if option == "nc":
+      create_account(clients,accounts)
+     
     elif option == "s":
-      withdraw_money(accounts)
-      
-    elif option == "e":      
-      bank_account_statement(accounts)     
+      withdraw_money(clients)
 
+    elif option == "lc":
+      list_accounts(accounts)      
+      
+    elif option == "e":
+      show_extract(clients)      
+     
     elif option == "q":
       break
 

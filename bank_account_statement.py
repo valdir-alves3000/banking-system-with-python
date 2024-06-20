@@ -1,22 +1,18 @@
-from accounts import check_if_the_account_already_exists
-from operation_failure import operation_failure
+from datetime import datetime
 
 
-def bank_account_statement(accounts):  
-  try:
-    number_account = float(input("Informe a conta para Extrato: "))        
-    bank_agency = input("Informe a agêcia para Extrato: ")  
-  except ValueError:
-    operation_failure("Digite apenas números.")
+class BankAccountStatement:
+  def __init__(self):
+    self._transactions = []
   
-  password = input("Digite sua senha: ")
-  account = check_if_the_account_already_exists(bank_agency=bank_agency,number_account=number_account,accounts=accounts)
+  @property
+  def transactions(self):
+    return self._transactions
   
-  if account and account["password"] == password:        
-    print("\n============= EXTRATO =============")
-    print("Não foi Realizada Movimentação.\n" if not account["extract"] else account["extract"])
-    print(f"✅ Saldo: R$ {account.get('balance', 0):.2f}")
-    print("===================================")
-  else:
-    operation_failure("Verifique agência/conta/password.")
-  
+  def add_transaction(self,transaction):
+    self._transactions.append({
+      "type":  transaction.__class__.__name__,
+      "value": transaction.value,
+      "date": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+    })
+

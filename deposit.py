@@ -1,27 +1,17 @@
-from accounts import (check_if_the_account_already_exists,
-                      transaction_information)
-from operation_failure import operation_failure
+from transaction import Transaction
 
 
-def deposit(bank_agency,accounts):
-  if len(accounts) > 0:     
-    try:
-      value = float(input("Informe o valor do depósito: "))   
-      number_account = float(input("Informe a conta de depósito: "))
-    except ValueError:
-      operation_failure("Digite apenas números.")               
+class Deposit(Transaction):
+  def __init__(self,value):
+    self._value = value
 
-    account = check_if_the_account_already_exists(bank_agency=bank_agency,number_account=number_account,accounts=accounts)
-    
-    if(value > 0):
-      account["balance"] += value
-      account["extract"] += f"✅ Depósito: R$ {value:.2f}\n"
-     
-      transaction_information(value,account,"depósito")
-     
-    else:
-      operation_failure("O valor informado é inválido.")
-  else:
-    operation_failure("Não há conta no Sistema.") 
+  @property
+  def value(self):
+    return self._value
+  
+  def register(self,account):
+    success_transaction = account.deposit(self.value)
 
-  return accounts
+    if success_transaction:
+      account.bank_account_statement.add_transaction(self)
+
